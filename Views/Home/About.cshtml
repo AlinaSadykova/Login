@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+
+@model Eusers
+<div class="logreg">
+
+        <h1>Login</h1>
+        
+    <form asp-action="processlogin" asp-controller="Home" method="POST">
+            <br>
+            
+            <span asp-validation-for="email"></span><br>
+            <br>
+            <input asp-for="email" placeholder="email"><br>
+            <br>
+            <span asp-validation-for="password"></span><br>
+            <br>
+            <input asp-for="password" placeholder="password" type="password"><br>
+            <br>
+            <input type="submit" value="Login"><small> </small><a href="/">Need to Register?</a>
+        
+        
+        </form>
+    </div>
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>Use this area to provide additional information.</p>

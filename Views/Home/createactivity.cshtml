@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "About";
+}
+
+@model Activities
+<h1>Create an Activity!</h1>
+<form asp-action="processactivity" asp-controller="Home" method="POST">
+<span asp-validation-for="title"></span><br>
+<label asp-for="title">Title:</label><br>
+<input asp-for="title" ><br>
+<br>
+<span asp-validation-for="date"></span><br>
+<label asp-for="date">Date:</label><br>
+<input asp-for="date" type="datetime-local"><br>
+<br>
+<span asp-validation-for="numduration"></span><br>
+<label asp-for="duration">Duration:</label><br>
+<input type="number" asp-for="numduration"><br>
+<select asp-for="duration">
+    <option value="days">DAYS</option>
+    <option value="hours">HOURS</option>
+    <option value="minutes">MINUTES</option>
+    
+</select><br>
+<label asp-for="description">Description</label><br>
+<span asp-validation-for="description"></span><br>
+<textarea asp-for="description"></textarea><br>
+<br>
+<input type="submit" value="Create Activity!">
+</form> 

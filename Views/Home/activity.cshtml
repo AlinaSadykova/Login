@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "About";
+}
+@foreach(var you in @ViewBag.minfo)
+{
+<h1>@you.title</h1>
+<h3>Event coordinator: @ViewBag.ec[0].eusers.firstname @ViewBag.ec[0].eusers.lastname</h3>
+<h3>Description:</h3>
+<p>@you.description</p>
+<h3>Participants:</h3>
+<ul>
+    @if(ViewBag.lolo != 5){
+        @foreach(var x in  @ViewBag.bob)
+        {
+        <li>@x.eusers.firstname @x.eusers.lastname</li>
+        }
+    }</ul>
+}
+@foreach(var met in @ViewBag.minfo)
+        {
+            @if( @ViewBag.abc == met.eusersid){
+                <a href="processdelete/@met.activitiesid">Delete Activity</a>
+            }
+            else if(@ViewBag.count == 0){
+                <a href="addguest/@met.activitiesid">Join</a>
+            }
+            else{
+                var attending = false;
+                    foreach(var blue in @ViewBag.mary){
+                            if(blue.eusersid == @ViewBag.abc && blue.activitiesid == @met.activitiesid){
+                                attending =  true;
+                            }   
+                    }
+                    if(attending == true){
+                      <a href="deleteguest/@met.activitiesid">Leave</a>  
+                    }       
+                    else{
+                        <a href="addguest/@met.activitiesid">Join</a>
+                    }                   
+                }    
+        }

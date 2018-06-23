@@ -1,0 +1,75 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h3>Welcome @ViewBag.name</h3>
+<h1>Dojo Activity Center</h1>
+<table class="table table-striped">
+        <tr class="active">
+            <th>Activity</th>
+            <th>Date and Time</th>
+            <th>Duration</th>
+            <th>Event Coordinator</th>
+            <th>Number of Participants</th>
+            <th>Action</th>
+        </tr>
+        
+        @foreach(var met in @ViewBag.bob)
+        {
+            if(@met.date< DateTime.Now){
+                continue;
+            }
+    <tr>   
+    <td><a href="activity/@met.activitiesid">@met.title</a></td>
+    <td>@met.date.ToString("dddd, dd MMMM yyyy h:mm tt")</td>
+    <td>@met.numduration @met.duration</td>
+    <td>@foreach(var act in @ViewBag.ec)
+        {
+            if(act.activitiesid==@met.activitiesid){
+                <small>@act.eusers.firstname @act.eusers.lastname</small>
+            }
+        }
+    </td>
+    <td>@{
+            if(@ViewBag.you != 5){
+                var count2 = 0;
+                foreach(var t in @ViewBag.mary){
+                    if(t.activitiesid == met.activitiesid){
+                        count2 +=1;
+                        
+                    }
+                }
+                <h4>@count2</h4>
+            }
+            else if(@ViewBag.you == 5){
+                <h4>0</h4>
+            }
+            }</td>
+    <td>@{
+        if( @ViewBag.abc == met.eusersid){
+        <a href="processdelete/@met.activitiesid">Delete</a>
+        }
+        else if(@ViewBag.count == 0){
+            
+                <a href="addguest/@met.activitiesid">Join</a>
+            }
+        else{
+            var attending = false;
+            foreach(var blue in @ViewBag.mary){
+                    if(blue.eusersid == @ViewBag.abc && blue.activitiesid == @met.activitiesid){
+                        attending =  true;
+                    }   
+            }
+            if(attending == true){
+              <a href="deleteguest/@met.activitiesid">Leave</a>
+            }       
+            else{
+                <a href="addguest/@met.activitiesid">Join</a>
+            }
+        }  
+    } 
+        </tr> }
+    </table>
+   
+<a href="createactivity"><button>Create New Activity</button></a>
+
+
